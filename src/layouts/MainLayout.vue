@@ -9,13 +9,13 @@
           icon="menu"
           aria-label="Menu"
           @click="toggleLeftDrawer"
-        />
+         style="color:black"/>
 
-        <q-toolbar-title>
+        <q-toolbar-title style="color:black">
          Thunder Novels
         </q-toolbar-title>
 
-        <div> versão {{ $q.version }}</div>
+        <div style="color:black"> versão {{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
