@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page padding>
       <q-carousel
         v-model="slide"
         transition-prev="jump-right"
@@ -41,17 +41,23 @@
           </div>
         </q-carousel-slide>
       </q-carousel>
+      <component :is="reader"></component>
   </q-page>
 </template>
 <script>
 import { ref } from 'vue'
-
+import reader from 'components/reader.vue'
 export default {
   setup () {
     return {
       slide: ref('style'),
       lorem: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.'
     }
-  }
+  },
+  data() {
+    return {
+      reader:reader
+    }
+  },
 }
 </script>
