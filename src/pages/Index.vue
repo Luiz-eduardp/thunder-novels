@@ -6,7 +6,7 @@
         transition-next="jump-left"
         swipeable
         animated
-        control-color="black"
+        control-color="white"
         prev-icon="arrow_left"
         next-icon="arrow_right"
         navigation-icon="radio_button_unchecked"
