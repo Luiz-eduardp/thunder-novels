@@ -41,12 +41,12 @@
           </div>
         </q-carousel-slide>
       </q-carousel>
-      <component :is="reader"></component>
+
   </q-page>
 </template>
 <script>
 import { ref } from 'vue'
-import reader from 'components/reader.vue'
+
 export default {
   setup () {
     return {
