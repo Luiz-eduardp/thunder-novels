@@ -11,7 +11,7 @@
         </q-toolbar-title>
       </q-toolbar>
 
-      <q-tabs align="left" style="color:black;text-align: center">
+      <q-tabs align="center" style="color:black;text-align: center">
         <q-route-tab to="/" label="Home" />
         <q-route-tab to="/novels" label="Novels" />
         <q-route-tab to="/contato" label="Contato" />

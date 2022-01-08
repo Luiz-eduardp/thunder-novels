@@ -56,7 +56,7 @@ export default {
 
 .reader{
 border: 2px solid white;
-text-align: justify;
+text-align: left;
 padding: 30px 30px;
 }
 </style>
