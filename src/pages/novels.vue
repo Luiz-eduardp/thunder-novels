@@ -1,11 +1,24 @@
 <template>
-  <q-page padding>
-  <q-btn>Novel 1</q-btn>
-  </q-page>
+<q-page padding>
+  {{novelList}}
+
+</q-page>
 </template>
 
 <script>
+
 export default {
-  // name: 'PageName',
+    // name: 'PageName',
+    data() {
+        return {
+            novelList: []
+        }
+    },
+  created() {
+  // Simple GET request using fetch
+  fetch("./jsons/novels.json")
+    .then(response => response.json())
+    .then(data => (this.novelList = data));
+}
 }
 </script>

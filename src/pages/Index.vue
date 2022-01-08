@@ -6,10 +6,10 @@
         transition-next="jump-left"
         swipeable
         animated
-        control-color="white"
+        control-color="black"
         prev-icon="arrow_left"
         next-icon="arrow_right"
-        navigation-icon="radio_button_unchecked"
+        navigation-icon="radio_button_checked"
         navigation
         padding
         arrows
@@ -54,10 +54,6 @@ export default {
       lorem: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.'
     }
   },
-  data() {
-    return {
-      reader:reader
-    }
-  },
+
 }
 </script>
