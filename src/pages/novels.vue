@@ -4,8 +4,10 @@
         <template v-for="(novel, i) in novelList" :key="i">
             <q-btn class="novelistBtn" @click="ler = !ler">{{novel.nome}}</q-btn>
  <div class="q-ma-md reader" v-show="ler">
-   <q-select v-model="novel.caps.index" :options="capAtual" label="Standard" />
-   {{novel.caps[this.capAtual].content}}
+   <q-select v-model="capAtual" :options="novel.caps[i]" label="Capítulos" />
+   <div v-html="novel.caps[this.capAtual].content">
+
+   </div>
      </div>
         </template>
 
@@ -16,14 +18,20 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 
 export default {
+    setup () {
+    return {
+      model: ref(null),
+        }
+  },
     // name: 'PageName',
     data() {
         return {
             novelList: [],
             novelSelect:[],
-            capAtual:0,
+            capAtual: 0,
             ler:false
         }
     },
@@ -48,5 +56,7 @@ export default {
 
 .reader{
 border: 2px solid white;
+text-align: justify;
+padding: 30px 30px;
 }
 </style>
