@@ -1,50 +1,60 @@
 <template>
-  <div class="q-pa-md q-gutter-sm">
-    <q-btn label="Maximized" color="primary" @click="dialog = true" />
-
-    <q-dialog
-      v-model="dialog"
-      persistent
-      :maximized="maximizedToggle"
-      transition-show="slide-up"
-      transition-hide="slide-down"
-    >
-      <q-card class="bg-primary text-white">
-        <q-bar>
-          <q-space />
-
-          <q-btn dense flat icon="minimize" @click="maximizedToggle = false" :disable="!maximizedToggle">
-            <q-tooltip v-if="maximizedToggle" class="bg-white text-primary">Minimize</q-tooltip>
-          </q-btn>
-          <q-btn dense flat icon="crop_square" @click="maximizedToggle = true" :disable="maximizedToggle">
-            <q-tooltip v-if="!maximizedToggle" class="bg-white text-primary">Maximize</q-tooltip>
-          </q-btn>
-          <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip class="bg-white text-primary">Close</q-tooltip>
-          </q-btn>
-        </q-bar>
-
-        <q-card-section>
-          <div class="text-h6">Alert</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum repellendus sit voluptate voluptas eveniet porro. Rerum blanditiis perferendis totam, ea at omnis vel numquam exercitationem aut, natus minima, porro labore.
-        </q-card-section>
-      </q-card>
-    </q-dialog>
-  </div>
+  <q-page padding>
+    <div class="q-ma-md">
+      <template v-for="(novel, i) in novelList" :key="i">
+        <q-btn class="novelistBtn" @click="ler = !ler">{{ novel.nome }}</q-btn>
+        <div class="q-ma-md reader" v-show="ler">
+          <q-select
+            v-model="capAtual"
+            :options="novel.caps[i]"
+            label="Capítulos"
+          />
+          <div v-html="novel.caps[this.capAtual].content"></div>
+        </div>
+      </template>
+    </div>
+  </q-page>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref } from "vue";
 
 export default {
-  setup () {
+  setup() {
     return {
-      dialog: ref(false),
-      maximizedToggle: ref(true)
-    }
-  }
-}
+      model: ref(null),
+    };
+  },
+  // name: 'PageName',
+  data() {
+    return {
+      novelList: [],
+      novelSelect: [],
+      capAtual: 0,
+      ler: false,
+    };
+  },
+  created() {
+    // Simple GET request using fetch
+    this.ler = false;
+    fetch("https://api.npoint.io/b44f929370822909de6b")
+      .then((response) => response.json())
+      .then((data) => (this.novelList = data));
+  },
+};
 </script>
+
+<style>
+.novelistBtn {
+  background-color: #ff9800 !important;
+  color: black;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.reader {
+  border: 2px solid white;
+  text-align: left;
+  padding: 30px 30px;
+}
+</style>
